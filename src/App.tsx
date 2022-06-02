@@ -1,8 +1,25 @@
+import { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Layout from './components/layout/layout';
+
+//@ts-ignore
+const Landing = lazy(() => import('./pages/landing'));
+//@ts-ignore
+const Examples = lazy(() => import('./pages/examples'));
+
 function App() {
   return (
-    <div className='App flex justify-center items-center min-h-screen'>
-      <div className='w-[400px] h-[400px] bg-[#232536] rounded-xl'></div>
-    </div>
+    <Layout>
+      <Router>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path='/' element={<Landing />} />
+            <Route path='/examples' element={<Examples />} />
+          </Routes>
+        </Suspense>
+      </Router>
+    </Layout>
   );
 }
 
