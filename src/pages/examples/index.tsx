@@ -1,2 +1,2 @@
-//@ts-ignore
-export * from './Examples';
+import Examples from './Examples';
+export default Examples;
