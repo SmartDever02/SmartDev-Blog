@@ -9,16 +9,16 @@ const Examples = lazy(() => import('./pages/examples'));
 
 function App() {
   return (
-    <Layout>
-      <Suspense fallback={null}>
-        <Router>
+    <Suspense fallback={null}>
+      <Router>
+        <Layout>
           <Routes>
             <Route path='/' element={<Landing />} />
             <Route path='/examples/*' element={<Examples />} />
           </Routes>
-        </Router>
-      </Suspense>
-    </Layout>
+        </Layout>
+      </Router>
+    </Suspense>
   );
 }
 

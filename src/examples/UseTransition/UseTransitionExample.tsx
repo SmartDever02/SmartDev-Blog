@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { debounce } from 'lodash';
 
-import ResultView from './ResultView';
+import ResultView from '.';
 
 const UseTransition = () => {
   const [size, setSize] = useState(3);

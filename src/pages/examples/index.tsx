@@ -1,2 +1,2 @@
-import Examples from './Examples';
-export default Examples;
+import ExampleRoutes from './ExampleRoutes';
+export default ExampleRoutes;

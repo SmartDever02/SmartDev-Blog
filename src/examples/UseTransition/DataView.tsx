@@ -1,6 +1,6 @@
-import { useMemo, useEffect, memo } from 'react';
+import { useEffect, memo } from 'react';
 
-const ResultView = (props: propsType) => {
+const DataView = (props: propsType) => {
   useEffect(() => {
     // console.log('Result View Rendered...');
     console.log(props?.data);
@@ -23,4 +23,4 @@ const ResultView = (props: propsType) => {
 interface propsType {
   data?: Array<any> | null;
 }
-export default memo(ResultView);
+export default memo(DataView);
