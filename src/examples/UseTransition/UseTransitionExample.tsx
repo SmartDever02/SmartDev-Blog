@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { debounce } from 'lodash';
 
-import ResultView from '.';
+import ResultView from './DataView';
+import Container from '../../components/containers';
 
 const UseTransition = () => {
   const [size, setSize] = useState(3);
@@ -59,7 +60,7 @@ const UseTransition = () => {
   };
 
   return (
-    <div className='p-[100px_5%_0px_5%]'>
+    <Container addClass='mt-32'>
       <div className='w-[50vw] flex flex-col gap-[20px]'>
         {isPending ?? <p>Pending Now...</p>}
         <div className='p-[10px_30px] bg-darker flex justify-between items-center text-lg'>
@@ -86,7 +87,7 @@ const UseTransition = () => {
         />
         <ResultView data={data} />
       </div>
-    </div>
+    </Container>
   );
 };
 

@@ -1,10 +1,13 @@
+import Container from '../../components/containers';
 import Headings from '../../components/headings/Headings';
+import ExampleGrid from './components/ExampleGrid';
 
 const Examples = () => {
   return (
-    <div className='smart-examples'>
+    <Container>
       <Headings>My React Examples</Headings>
-    </div>
+      <ExampleGrid />
+    </Container>
   );
 };
 

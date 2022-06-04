@@ -1,6 +1,7 @@
 export const examples = [
   {
     value: 'UseTransition',
+    description: 'An Example With UseTransition',
     link: '/usetransition',
   },
 ];

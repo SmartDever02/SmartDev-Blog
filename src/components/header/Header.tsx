@@ -3,7 +3,7 @@ import { navs } from '../../data/structure';
 
 const Header = () => {
   return (
-    <header className='bg-[#151519] h-60 w-screen p-[10px_30px]'>
+    <header className='bg-[#151519] h-60 p-[10px_30px]'>
       <div className='text-md flex gap-3'>
         {navs.map((nav) => (
           <Link key={nav.value} to={nav.link} className=''>
