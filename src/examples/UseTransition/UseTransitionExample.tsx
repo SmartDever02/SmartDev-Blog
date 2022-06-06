@@ -1,52 +1,41 @@
-import React, { useCallback, useEffect, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { debounce } from 'lodash';
 
-import ResultView from './DataView';
 import Container from '../../components/containers';
 
 const UseTransition = () => {
   const [size, setSize] = useState(3);
-  const [data, setData] = useState([{}]);
-  const [realData, setRealData] = useState([{}]);
   const [query, setQuery] = useState('');
-  const [isPending, startTransition] = useTransition();
+  const [data, setData] = useState([
+    { id: 'initial ID', username: 'James Jin' },
+  ]);
 
   const fetchData = useCallback(() => {
     // console.log('fetch function triggered, size:', size);
     fetch(`https://random-data-api.com/api/users/random_user?size=${size}`)
       .then((res) => res.json())
-      .then(setData)
-      .then(setRealDataFunc);
+      .then(setData);
+    // .then(setRealDataFunc);
   }, [size]);
 
   useEffect(() => {
-    // console.log('Example rendered(Top-level)...', size, data);
+    console.log('effect by size', size, data);
     fetchData();
-  }, [size, realData]);
+  }, [size]);
 
-  const setRealDataFunc = () => {
-    console.log('setRealDataFunc:', data);
-    // let _data = data.filter(
-    //   (one: any, index: number) => one
-    //   // {
-    //   //   // index === 0 ?? console.log(one);
-    //   //   // one.username.includes(query);
-    //   //   //console.log(one);
-    //   //   return true;
-    //   // }
-    // );
-    // setData(_data);
-  };
-
+  useEffect(() => {
+    console.log('effect by query', size, data);
+  }, [query]);
+  ``;
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    startTransition(() => {
-      // setQuery(e.target.value);
-      setQuery(query);
-      setRealDataFunc();
-    });
+    console.log('uery change log');
+    // setQuery(e.target.value);
+    setQuery(e.target.value);
+    // setRealDataFunc();
   }, []);
+
   const handleChangeBounce = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const debounceFunc = debounce(handleChange, 500);
+    const debounceFunc = debounce(handleChange, 1000);
     debounceFunc(e);
   };
 
@@ -62,7 +51,6 @@ const UseTransition = () => {
   return (
     <Container addClass='mt-32'>
       <div className='w-[50vw] flex flex-col gap-[20px]'>
-        {isPending ?? <p>Pending Now...</p>}
         <div className='p-[10px_30px] bg-darker flex justify-between items-center text-lg'>
           <p>
             Number Of Users' Data From API:{' '}
@@ -85,7 +73,18 @@ const UseTransition = () => {
           className='bg-[#ffffff30] p-[20px_40px] rounded-full'
           onChange={handleChangeBounce}
         />
-        <ResultView data={data} />
+        <div className='h-[60vh] bg-darker rounded-[32px] p-3'>
+          <ul className='h-full rounded-[20px] overflow-x-hidden'>
+            {data?.map((one, index) => (
+              <li
+                className='p-[10px_30px] bg-primary even:bg-darker rounded-[30px]'
+                key={one?.id || index}
+              >
+                {one?.username}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </Container>
   );

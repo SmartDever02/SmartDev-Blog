@@ -1,12 +1,12 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import SearchExample from './Examples';
 const UseTransition = lazy(
   () => import('../../examples/UseTransition/UseTransitionExample')
 );
 
-//import data
+//import JSON data
 import data from './data';
 
 const Elements = [<SearchExample />, <UseTransition />];
